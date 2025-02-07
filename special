@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Rose for My Love 🌹</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #000;
+            cursor: pointer;
+        }
+
+        #flashCard {
+            background: pink;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: Arial;
+            transition: 0.5s;
+        }
+
+        #rose {
+            display: none;
+            font-size: 100px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .message {
+            color: white;
+            font-size: 24px;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .petals {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="flashCard">
+        <h1>Touch Here 🌹</h1>
+    </div>
+    <div id="rose">🌹</div>
+    <div class="message">Happy Rose Day, My Love! 💖</div>
+
+    <script>
+        const flashCard = document.getElementById('flashCard');
+        const rose = document.getElementById('rose');
+        const message = document.querySelector('.message');
+
+        // Trigger on touch/click
+        flashCard.addEventListener('touchstart', revealRose);
+        flashCard.addEventListener('click', revealRose);
+
+        function revealRose() {
+            flashCard.style.display = 'none';
+            rose.style.display = 'block';
+            message.style.display = 'block';
+            
+            // Add petals animation (optional)
+            for (let i = 0; i < 50; i++) {
+                createPetal();
+            }
+        }
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.innerHTML = '🌸';
+            petal.style.position = 'absolute';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
+            document.body.appendChild(petal);
+
+            setTimeout(() => petal.remove(), 5000);
+        }
+    </script>
+</body>
+</html>
